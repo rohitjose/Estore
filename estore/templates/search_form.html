@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Estore | {{category.capitalize}}{% endblock %}
+{% block head %}ESTORE{% endblock %}
+
+{% block content %}
+
+<h2>{{category.upper}}</h2>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+         <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Search">
+    </form>
+{% endblock%}

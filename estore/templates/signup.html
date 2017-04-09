@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+  <h1>Create an account</h1>
+
+  <form action="" method="post">
+      <table border=1>
+      {{ form.as_table}}
+      </table>
+      <input type="submit" value="Create the account">
+  </form>
+{% endblock %}
+

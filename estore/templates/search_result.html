@@ -1,0 +1,68 @@
+{% extends "base.html" %}{# Extending the template from the base template #}
+
+{% block title %}Estore | {{category.capitalize}}{% endblock %}
+{% block head %}ESTORE{% endblock %}
+
+{% block content %}
+
+<h2>{{category.upper}}</h2>
+<br>
+{% if query %}
+<p> <h3>SEARCH RESULTS</h3> </p>
+<br>
+{% if user.is_authenticated %}
+<ul class="object-tools">
+
+          <li><a href="../viewcart/" class="addlink">View Cart</a></li>
+</ul>
+{% endif %}
+	{# RESULTS TABLE #}
+	<table border=1>
+	{# DISPLAYS THE HEADING #}
+	<tr>
+	{% for s in field %}
+	<th>{{s}}</th>
+	{% endfor %}
+	{% if user.is_authenticated %}
+	<th>Cart</th>
+	{% endif %}
+	</tr>
+	
+	{# DISAPLAYS THE RESULT ROWS #}
+	{% for i in query %}
+	<tr>
+	{# DISPLAYS EACH ROW #}
+		{% for j in i  %}
+			 {% if forloop.counter = 2%}<td><a href="../product/{{forloop.parentloop.counter}}/">{{j}}</a></td>
+			 {% else %}
+			 {% if not forloop.first %}<td>{{j}}</td>{% endif %}
+			 {% endif %}
+		{% endfor %}
+		{% if user.is_authenticated %}
+		<td><a href="../addcart/{{forloop.counter}}/">Add to cart</a></td>
+		{% endif %}
+	</tr>
+	{% endfor %}
+
+</table>
+	
+<br><br>
+
+<p>
+
+	<h3>{{category.upper}} RECOMMENDATIONS </h3>
+	<ul>
+	{% for i in head %}
+	{% if "exact" not in i %}
+	<li><a href="../search/{{i}}/">{{i.capitalize}}</a></li>
+	{% endif %}
+	{% endfor %}
+	</ul>
+
+</p>
+
+
+{% else %}
+<p>No results found</p>
+{% endif %}
+{% endblock%}

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us" >
+<head>
+<title>{% block title %}Title{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="/media/css/base.css" />
+
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/home/jose/Recommend/recommend/templates/temp.css" /><![endif]-->
+
+<script type="text/javascript">window.__admin_media_prefix__ = "/media/";</script>
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+
+<body class="">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><b>{% block head%} ESTORE {% endblock %}</b></h1>
+	<div id="user-tools">
+
+          {% if user.is_authenticated %}
+			 Welcome,<strong>{{ user.username }}</strong>&nbsp [<a href="/logout/">Logout</a>]
+	  {% else %}
+			 Welcome,<strong>Guest</strong>&nbsp
+		        <a href="/login/">Login </a> | <a href="/signup/">Sign Up</a>
+	  {% endif %}
+                
+                               
+        </div>
+
+
+        </div>
+        
+        
+    </div>
+    <hr>
+    <!-- END Header -->
+    <div class="breadcrumbs">
+    <a href="/home/">&nbsp Home &nbsp </a> |
+    <a href="/books/main/">&nbsp Books &nbsp </a> |
+    <a href="/television/main/">&nbsp Television &nbsp </a> |
+    <a href="/laptop/main/">&nbsp Laptop &nbsp </a> |
+    <a href="/mobile/main/">&nbsp Mobile &nbsp </a> |
+    <a href="/camera/main/">&nbsp Camera &nbsp </a> |
+    <a href="/about/details/">&nbsp About &nbsp </a>
+
+    </div>
+    <hr>
+
+        
+
+    <!-- Content -->
+    <div id="content" class="colM">
+{% block content%}
+{% endblock %}
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+<!--End of body-->
+</html>
+
+

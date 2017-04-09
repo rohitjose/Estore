@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Estore | {{category.capitalize}}{% endblock %}
+{% block head %}ESTORE{% endblock %}
+
+
+{% block content %}
+
+<div id="content" align="left" >
+<p>
+<h2>{{category.upper}}</h2>
+</p>
+
+<table border=1 WIDTH="15%">
+<form action="" method="post">
+<caption align="left"><label>LIST BY </label></caption>
+<tr>
+<td>
+<select name="basis">
+{% if "New" in sel %}
+	<option value="{{sel}}" selected="{{sel}}">{{sel}}</option>
+	<option value="Product Rating">Product Rating</option>
+	{% if user.is_authenticated %}
+	<option value="Recommended">Recommended</option>
+	{% endif %}
+{% else %}
+	{% if "Recommended" in sel %}	
+		<option value="{{sel}}" selected="{{sel}}">{{sel}}</option>
+		<option value="New Products">New Products</option>
+		<option value="Product Rating">Product Rating</option>
+	{% else %}
+		<option value="{{sel}}" selected="{{sel}}">{{sel}}</option>
+		<option value="New Products">New Products</option>
+		{% if user.is_authenticated %}
+		<option value="Recommended">Recommended</option>
+		{% endif %}
+	{% endif %}
+{% endif %}
+</td>
+<td>
+<input type="submit" value="Go">
+</td>
+</tr>
+</form>
+</table>
+
+
+
+<ul class="object-tools">
+
+          <li><a href="../search/" class="addlink"> Advanced Search</a></li>
+</ul>
+
+<br><br>
+
+<table border=2>
+{% if "New" in sel %}
+<caption align="top"><h3 align="left">LATEST PRODUCTS</h3></caption>
+{% else %}
+	{% if user.is_authenticated and "Rec" in sel %}
+		<caption align="top"><h3 align="left">RECOMMENDED PRODUCTS</h3></caption>
+	{% else %}		
+		<caption align="top"><h3 align="left">HIGHEST RATED</h3></caption>
+	{% endif %}
+{% endif %}
+{% for i in plist %}
+<tr>
+<td><a href="/{{category}}/lproduct/{{i.id}}/" title="{{i.title}}"><img src={{i.photo}}  alt="No Preview Available" caption="{{i.title}}"/></a></td>
+<td><a href="/{{category}}/lproduct/{{i.id}}/" title="{{i.title}}">{{i.title}}</a></td>
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+
+<br><br>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Estore | Cart{% endblock %}
+{% block head %}ESTORE{% endblock %}
+
+{% block content %}
+
+<p><h3> ITEMS ADDED </h3></p>
+
+	<table border=1>
+	{# DISPLAYS THE HEADING #}
+	<tr>
+	<th>SNo</th>
+	{% for s in field %}
+	<th>{{s.capitalize}}</th>
+	{% endfor %}
+	<th>Cart</th>
+	</tr>
+
+	{# DISPLAYS THE RESULT ROWS #}
+	{% for i in list %}
+	<tr>
+	<td>{{forloop.counter}}</td>
+	{# DISPLAYS EACH ROW #}
+		{% for j in i  %}
+			 <td>{{j}}</td>
+		{% endfor %}
+		<td><a href="/removecart/{{forloop.counter}}/">Remove from Cart</a></td>
+	</tr>
+	{% endfor %}
+
+</table>
+<br>
+<ul class="object-tools">
+
+          <li><a href="/checkout/" class="addlink">Check Out</a></li>
+</ul>
+
+{% endblock %}

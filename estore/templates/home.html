@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Estore | Home{% endblock %}
+{% block head %}ESTORE{% endblock %}
+
+
+{% block content %}
+
+<table border=1>
+<caption align='top'><h3 align="left">BOOKS</h3></caption>
+{% for i in book %}
+<tr>
+{% if i.photo %}
+<td><img src="{{MEDIA_URL}}{{i.photo.url}}" alt="No Preview available"/></td>
+{% else %}
+<td>{{i.title.capitalize}}</td>
+{% endif %}
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+
+<table border=1>
+<caption align='top'><h3>TELEVISION</h3></caption>
+{% for i in tv %}
+<tr>
+{% if i.photo %}
+<td><img src="{{MEDIA_URL}}{{i.photo.url}}" alt="No Preview available"/></td>
+{% else %}
+<td>{{i.title.capitalize}}</td>
+{% endif %}
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+
+<table border=1>
+<caption align='top'><h3>MOBILES</h3></caption>
+{% for i in mob %}
+<tr>
+{% if i.photo %}
+<td><img src="{{MEDIA_URL}}{{i.photo.url}}" alt="No Preview available"/></td>
+{% else %}
+<td>{{i.title.capitalize}}</td>
+{% endif %}
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+
+<table border=1>
+<caption align='top'><h3>LAPTOPS</h3></caption>
+{% for i in lap %}
+<tr>
+<td><img src="{{MEDIA_URL}}{{i.photo.url}}" alt="No Preview available"/></td>
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+
+<table border=1>
+<caption align='top'><h3>CAMERA</h3></caption>
+{% for i in cam %}
+<tr>
+<td><img src="{{MEDIA_URL}}{{i.photo.url}}" alt="No Preview available"/></td>
+<td>{{i.description}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+
+{% endblock%}
+
